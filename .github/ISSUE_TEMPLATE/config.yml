@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Bao lo hong bao mat (rieng tu)
+    url: https://github.com/IplayIshare/albion-players/security/advisories/new
+    about: Khong dang mat khau, token hoac chi tiet khai thac trong issue cong khai.

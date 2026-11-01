@@ -1,0 +1,21 @@
+# Keep downloaded clients and local runtime files out of this player repository.
+client/
+client-staging-*/
+downloads/
+dist/
+*.zip
+*.partial
+*.log
+*.dmp
+*.db
+*.db-*
+.env*
+*.pem
+*.key
+*.pfx
+*.p12
+.ssh/
+*credentials*
+*backup*
+.DS_Store
+Thumbs.db
