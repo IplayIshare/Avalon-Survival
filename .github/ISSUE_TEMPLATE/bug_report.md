@@ -12,8 +12,10 @@ assignees: ""
 1.
 2.
 
-**Phien ban Windows:**
-**Phien ban client (version.txt):**
+**He dieu hanh (Windows / Android) va phien ban:**
+**Ten thiet bi:**
+**Phien ban client (Windows: version.txt; Android: cai dat ung dung):**
+**Phien ban bo ket noi:**
 **Thoi diem xay ra loi:**
 
 **Thong bao loi / anh chup (da che thong tin ca nhan):**

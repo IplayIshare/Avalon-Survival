@@ -1,0 +1,24 @@
+{
+  "platform": "android",
+  "packageName": "com.sandboxinteractive.albiononline",
+  "versionName": "1.32.031.345742",
+  "versionCode": 345742,
+  "url": "https://live.albiononline.com/clients/Albion-Online.apk",
+  "apkBytes": 211172778,
+  "apkSha256": "b530e9815728d753a0a1c34a13e38dcc790bf3e3cd66a0c5f017d8e92439ec40",
+  "verifiedDate": "2026-11-02",
+  "downloadSource": "official-cdn",
+  "downloadAutomaticallyVerifiesHash": false,
+  "apkSigningCertificateSha256": "f119a66ba0030495633513d548ff3082aae880b434a4824789b9558e719c7742",
+  "privateServerConnectionVerified": false,
+  "officialApkAutoTargetsPrivateServer": false,
+  "companionLauncher": {
+    "packageName": "com.iplayishare.albionplayers",
+    "versionName": "0.1.0",
+    "server": "157.10.201.13:5055",
+    "configuresLaunchArguments": true,
+    "intentExtra": "unity",
+    "arguments": "+server 157.10.201.13:5055",
+    "status": "experimental-unverified-game-connection"
+  }
+}

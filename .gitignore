@@ -4,6 +4,16 @@ client-staging-*/
 downloads/
 dist/
 *.zip
+*.apk
+*.aab
+*.apks
+*.obb
+*.jks
+*.keystore
+*.class
+*.dex
+*-password.txt
+local.properties
 *.partial
 *.log
 *.dmp
