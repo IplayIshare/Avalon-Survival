@@ -43,6 +43,10 @@ try {
     }
     if ([string]::IsNullOrWhiteSpace($ArchivePath)) {
         if ($CheckOnly) { throw '-CheckOnly requires -ArchivePath; it never downloads or installs.' }
+        $besideInstaller = Join-Path $projectRoot 'albion-client-official.zip'
+        if (Test-Path -LiteralPath $besideInstaller) { $ArchivePath = $besideInstaller }
+    }
+    if ([string]::IsNullOrWhiteSpace($ArchivePath)) {
         $downloadDir = Assert-ProjectPath (Join-Path $projectRoot 'downloads')
         [IO.Directory]::CreateDirectory($downloadDir) | Out-Null
         $ArchivePath = Join-Path $downloadDir ('albion-client-' + $manifest.version + '.zip')
@@ -52,6 +56,10 @@ try {
                 throw 'Only the official HTTPS client source is allowed.'
             }
             $partialPath = Assert-ProjectPath ($ArchivePath + '.partial')
+            $head = Invoke-WebRequest -UseBasicParsing -Uri $downloadUri -Method Head -TimeoutSec 15 -MaximumRedirection 0
+            if ([long]$head.Headers['Content-Length'] -ne [long]$manifest.archiveBytes) {
+                throw 'Official CDN now serves another version. Put the verified 1.32.030.345319 ZIP beside this installer as albion-client-official.zip, or use -ArchivePath. Nothing was downloaded.'
+            }
             Write-Host 'Downloading the official Windows client (about 3.14 GB). Please wait...'
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
             Invoke-WebRequest -UseBasicParsing -Uri $downloadUri -OutFile $partialPath -TimeoutSec 3600 -MaximumRedirection 0

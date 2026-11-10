@@ -1,93 +1,68 @@
-# Albion — tải client và kết nối server
+# Avalon Survival — PC / AZDIGI
 
-**[Tải bộ kết nối Windows](https://github.com/IplayIshare/albion-players/releases/latest/download/Albion-Players.zip)** · **[Tải bộ mở game Android (thử nghiệm)](https://github.com/IplayIshare/albion-players/releases/download/v1.1.0-android-preview.1/Albion-VPS-Android.apk)** · [Hướng dẫn Android và tải client](android/README.md) · [Báo lỗi](https://github.com/IplayIshare/albion-players/issues)
+**[Tải bộ kết nối Survival cho PC](https://github.com/IplayIshare/albion-players/releases/download/v2.0.0-survival/Albion-Survival-PC.zip)** · [Bản phát hành](https://github.com/IplayIshare/albion-players/releases/tag/v2.0.0-survival)
 
-**Android: đã có APK mở game với địa chỉ VPS đặt sẵn. Đây là bản thử nghiệm; chưa xác nhận đăng nhập và vào bản đồ trên Android.**
+Server Survival đang thay bản cũ tại **157.10.201.13:5055** (AZDIGI). Bộ kết nối nhỏ, không chứa client gốc, tài khoản quản trị hay dữ liệu người chơi.
 
-Server cộng đồng thử nghiệm, mở đăng ký trực tiếp trong game. Đây là dự án độc lập, không phải dịch vụ chính thức của Albion Online hay Sandbox Interactive.
+## Cài trên PC
 
-| Thông tin | Giá trị |
-| --- | --- |
-| Địa chỉ game | `157.10.201.13:5055` |
-| Windows đã kiểm thử với VPS | `1.32.030.345319` |
-| Android thử nghiệm | Bộ mở game `0.1.0` + client `1.32.031.345742`; kết nối VPS chưa được kiểm chứng |
-| Đăng ký trên VPS | **Create account** sau khi mở game bằng bộ kết nối Windows |
-| Phí sử dụng bộ kết nối | Miễn phí |
+Cần Windows và client **1.32.030.345319**. Ngày 11/11/2026, đường tải chính thức đã chuyển sang **1.32.040.346594**; bản mới đó **chưa được xác minh tương thích**. Bộ cài sẽ dừng trước khi tải sai phiên bản.
 
-## Tải trên Android
+1. Tải **Albion-Survival-PC.zip** phía trên, giải nén ra thư mục riêng.
+2. Nếu đã có client đúng phiên bản, chép cả thư mục game vào `client` (bên trong có `Albion-Online_BE.exe`, `GameAssembly.dll`, `version.txt` và `Albion-Online_Data`).
+3. Nếu đã có ZIP gốc đúng phiên bản, đặt cạnh bộ cài, đặt tên `albion-client-official.zip`, rồi chạy **1-Tai-client.cmd**. Bộ cài kiểm tra SHA-256 trước khi giải nén. Cần khoảng 12 GB trống khi cài.
+4. Chạy **2-Mo-game.cmd**. Lần đầu công cụ chuẩn bị dữ liệu Survival; những lần sau chỉ cập nhật khi danh mục skin thay đổi. Công cụ luôn giữ DLL gốc và mở qua BattlEye Launcher.
+5. Nhập tên đăng nhập và mật khẩu riêng (8–72 ký tự ASCII). Đăng nhập lần đầu tự tạo tài khoản và một nhân vật, bỏ qua phần tạo nhân vật/tutorial. Chọn nhân vật và vào Brecilien. Tài khoản online độc lập với bản offline.
 
-Trên điện thoại, cài **[client Android chính thức](https://live.albiononline.com/clients/Albion-Online.apk)** và **[bộ mở game Albion VPS](https://github.com/IplayIshare/albion-players/releases/download/v1.1.0-android-preview.1/Albion-VPS-Android.apk)**. Sau đó mở ứng dụng **Albion VPS**, bấm **Mở game với địa chỉ VPS**. Bộ mở game kiểm tra chữ ký và phiên bản client trước khi truyền địa chỉ server. Nếu Albion đang chạy, buộc dừng game trong cài đặt ứng dụng trước khi thử.
-
-Xem **[hướng dẫn Android](android/README.md)** và **[kết quả kiểm thử](android/TESTING.md)** trước khi dùng. Client khoảng **211 MB**, có thể tải thêm dữ liệu. Người dùng Android không cần tải gói ZIP Windows hay chạy file `.cmd`.
-
-## Bắt đầu chơi trên Windows
-
-1. Tải **Albion-Players.zip** ở liên kết phía trên và giải nén vào một thư mục riêng, ví dụ `D:\Albion-Players`. Không chạy file ngay bên trong ZIP.
-2. Chạy **1-Tai-client.cmd**. Công cụ tải khoảng **3,14 GB** từ CDN chính thức của Albion, kiểm tra SHA-256 và phiên bản rồi giải nén. Cần khoảng **12 GB trống** trong lúc cài đặt. Bộ kết nối không yêu cầu quyền quản trị Windows.
-3. Chạy **2-Mo-game.cmd** để vào server.
-4. Chọn **Create account**, nhập email đúng định dạng và một mật khẩu riêng cho server này, từ 8–72 ký tự ASCII. Sau đó đăng nhập và tạo nhân vật.
-
-**Không cần xác nhận email.** Client có thể báo đã gửi email, nhưng server thử nghiệm kích hoạt tài khoản ngay và không gửi thư. Tài khoản ở đây độc lập với tài khoản Albion chính thức; không dùng lại mật khẩu của email hay tài khoản khác.
-
-### Nếu đã có đúng client
-
-Chép các file game vào thư mục `client` theo cấu trúc sau, rồi chạy **2-Mo-game.cmd**:
-
-```text
-Albion-Players/
-  1-Tai-client.cmd
-  2-Mo-game.cmd
-  Install-Client.ps1
-  client-manifest.json
-  client/
-    Albion-Online_BE.exe
-    Albion-Online.exe
-    version.txt
-    Albion-Online_Data/
-    ... các file còn lại của client ...
-```
-
-Dòng đầu của `client/version.txt` phải là `albiononline-win32-full-1.32.030.345319`. Giữ một bản client riêng cho server này; cập nhật bằng launcher chính thức có thể làm phiên bản không còn tương thích.
-
-## Nguồn tải và kiểm tra
-
-Client Windows được tải trực tiếp từ [CDN chính thức](https://live.albiononline.com/clients/albion-online-fullgame-win32.zip), không lưu trong repository hay GitHub Release này. [Manifest chính thức](https://live.albiononline.com/autoupdate/manifest.xml) được kiểm tra ngày **02/11/2026**; địa chỉ CDN có thể thay nội dung khi nhà phát hành cập nhật. Thông tin file Android nằm trong [hướng dẫn riêng](android/README.md#thông-tin-file-đã-kiểm-tra).
-
-Bộ cài chỉ chấp nhận archive đã kiểm tra với server:
-
-```text
-Phiên bản: 1.32.030.345319
-Dung lượng: 3143941770 byte
-SHA-256: f646ee4ead147b40a1e86cf6ef92e20e9e95044af7860d6a67a86fff366bec27
-```
-
-Nếu CDN đổi sang bản mới, bộ cài sẽ **dừng**, không chạy một phiên bản khác. Kiểm tra mục Releases hoặc báo lỗi để nhận hướng dẫn cập nhật; không bỏ qua kiểm tra SHA-256.
-
-Nếu đã có file ZIP đúng phiên bản, có thể kiểm tra trước mà không tải hay cài:
+Có thể chỉ định ZIP ở nơi khác:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Install-Client.ps1 -ArchivePath "D:\Downloads\albion-client.zip" -CheckOnly
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Install-Client.ps1 -ArchivePath "D:\Downloads\albion-client-official.zip"
 ```
 
-Bỏ `-CheckOnly` để cài từ file ZIP đó. `ExecutionPolicy Bypass` chỉ áp dụng cho tiến trình chạy script này, không thay chính sách của máy.
+ZIP gốc đã kiểm tra: **3.143.941.770 byte**, SHA-256:
 
-## Khi gặp lỗi
+```text
+f646ee4ead147b40a1e86cf6ef92e20e9e95044af7860d6a67a86fff366bec27
+```
 
-| Hiện tượng | Cách xử lý |
-| --- | --- |
-| Chưa có client | Chạy `1-Tai-client.cmd`, hoặc kiểm tra cấu trúc thư mục ở trên. |
-| Sai phiên bản / SHA-256 | Dừng cài đặt và kiểm tra bản phát hành tương thích. Không dùng file tải từ nguồn lạ. |
-| Không kết nối được | Mở game bằng `2-Mo-game.cmd`; kiểm tra mạng có cho UDP 5055–5057 đi ra. |
-| Sai tài khoản hoặc mật khẩu | Dùng tài khoản đã đăng ký tại server này. Nhập sai 5 lần có thể bị khóa tạm 15 phút. |
-| Không có email xác nhận | Không cần email xác nhận; thử đăng nhập ngay sau khi đăng ký. |
-| Game bị Windows chặn hoặc báo lỗi bảo vệ | Ghi lại thông báo để báo lỗi; không tắt phần mềm bảo vệ máy theo hướng dẫn không rõ nguồn. |
+Repo hiện **không cung cấp link tải client gốc đúng phiên bản**. Cần có ZIP hoặc thư mục client tương thích trước khi dùng bộ kết nối. Không dùng launcher chính thức để cập nhật đè lên bản riêng này.
 
-Khi [báo lỗi](https://github.com/IplayIshare/albion-players/issues), ghi hệ điều hành, tên thiết bị, phiên bản client, thời điểm và các bước gây lỗi. Che email, mật khẩu và thông tin cá nhân trong ảnh chụp hoặc log.
+## Luật Survival
 
-## Phạm vi của repository
+- Mua đồ ở Brecilien, đi cổng Avalon để vào vòng chung **20 phút**. Vào muộn chỉ còn thời gian của vòng hiện tại.
+- Mỗi nhóm bản đồ giữ tối đa **50 người**; đủ chỗ thì người mới sang nhóm khác. Một map chính và các map Avalon phụ nối với nhau.
+- Đội **1–6 người**, vào cùng nhóm. Chết thì mua đồ, trở lại đúng nhóm đó trong thời gian còn lại. Chỗ của người đã vào được giữ trong vòng.
+- Hết vòng, người tham gia được đưa về Brecilien; đồ còn nằm trong túi rơi mà không ai nhặt được thu hồi về chợ.
+- Full fame chiến đấu, không dùng VIP. Chợ có hàng hữu hạn, sản xuất theo nhịp cố định và giá thay đổi theo cung/cầu.
+- Siphoned Energy có trong chợ, giá tham chiếu 50.000 bạc; NPC cấp Siphon đã bỏ.
+- Đổi bạc sang vàng trong cửa sổ đổi vàng: khởi điểm 1.000 bạc/vàng, tăng 100 sau mỗi 10 triệu bạc đã đổi toàn server. Không đổi vàng ngược sang bạc.
+- **606 ngoại hình** có giá vàng; **115 ngoại hình mặc định** vẫn miễn phí. Các mức mặc định: mount 5.000, áo skin 2.500, phần skin khác 1.500, emote 1.000, loại khác 500 vàng. Món đã có giá gốc giữ giá gốc. Quản trị viên có thể thay giá hoặc ngừng bán.
+- Số kill quyết định reputation/danh hiệu theo mốc 0 / 50 / 150 / 500 / 1.000. Bảng stats có vàng và kill, nhưng còn các dòng thống kê gốc do giữ DLL nguyên bản để client khởi động được.
 
-Repository chỉ chứa bộ cài, file kết nối và hướng dẫn cho người chơi. Nó không chứa mã server, cơ sở dữ liệu, tài khoản quản trị hoặc khóa SSH. Bộ kết nối không thu thập mật khẩu; người chơi nhập thông tin trực tiếp trong game. Server nhận thông tin đăng ký/đăng nhập và địa chỉ IP cần thiết để cung cấp trò chơi.
+Lệnh trong kênh Say:
 
-Đây vẫn là server thử nghiệm; tính năng và khả năng phục vụ đông người có thể còn hạn chế. Lỗ hổng bảo mật cần được [báo riêng](https://github.com/IplayIshare/albion-players/security/advisories/new), không đăng chi tiết khai thác hay bí mật trong issue công khai.
+```text
+/s .survival
+/s .gold 100
+/s .goldbuy
+/s .skins SWORD
+/s .skinbuy 123 1500
+```
 
-Các script và hướng dẫn trong repo theo giấy phép MIT. Client Albion Online thuộc nhà phát hành và không nằm trong giấy phép này.
+`skinbuy` dùng **đúng mã và giá hiện ra từ .skins**, không dùng số ví dụ một cách máy móc. Server kiểm tra giá, số dư, quyền sở hữu và trạng thái đang bán. Giá thay đổi giữa chừng sẽ bị từ chối; mở lại game để làm mới cửa hàng gốc hoặc xem giá bằng `.skins`.
+
+## Khắc phục sự cố
+
+- **Kẹt 19% ở bản Survival cũ:** dùng bộ kết nối mới và client gốc; lỗi đóng gói dữ liệu đã được sửa. Bản mới lưu dữ liệu gốc trong `client/SurvivalOriginals`.
+- **Failed to load il2cpp / BattlEye chặn GameAssembly.dll:** bản mới giữ DLL gốc; đóng game rồi mở bằng `2-Mo-game.cmd`. Không tắt phần mềm bảo vệ.
+- **Không kết nối:** kiểm tra mạng cho UDP 5055–5057. TCP 18081 chỉ cung cấp danh mục skin, không nhận mật khẩu.
+- **Sai phiên bản:** dừng cài đặt, dùng đúng ZIP/thư mục được kiểm tra ở trên.
+
+## Android
+
+**Chưa công bố Android chơi được Survival.** Theo kế hoạch hiện tại, hoàn tất PC trước. Bộ mở game Android cũ chỉ truyền địa chỉ VPS; chưa xác nhận đăng nhập và vào map trên điện thoại thật. Không dùng APK thử nghiệm như một bản Android hoàn chỉnh. [Kết quả kiểm tra cũ](android/TESTING.md).
+
+## Dự án
+
+Bộ kết nối và hướng dẫn theo MIT. Tài sản/client Albion Online thuộc nhà phát hành. Dự án server cộng đồng độc lập, không phải dịch vụ chính thức. Mã server và bản sao lưu cũ được quản lý ở các repo riêng; không chứa trong gói người chơi.
