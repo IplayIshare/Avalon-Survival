@@ -14,7 +14,11 @@ Game sinh tồn PvP: vào Avalon, chiến đấu và sống sót qua vòng 20 ph
 
 Cần Windows, kết nối Internet và khoảng **12 GB dung lượng trống**. Dữ liệu game tải khoảng **3,14 GB**. Nếu tải bị gián đoạn, chạy lại bước 2. Không cập nhật thư mục này bằng launcher chính thức.
 
-Bản Android đang thử nghiệm, chưa có APK Survival được xác nhận vào game. Nếu bản thử yêu cầu cài APK Albion mới, hãy đóng thông báo và không cập nhật. [Trạng thái Android](android/README.md).
+## Tải bản thử trên Android
+
+**[Tải APK Android thử nghiệm](https://github.com/IplayIshare/Avalon-Survival/releases/download/v2.0.2-survival-android-preview.1/Albion-Survival-Android-Preview.apk)** · [Hướng dẫn cài](android/README.md)
+
+Chưa xác nhận đăng nhập và vào Avalon trên điện thoại thật. Bản thử không cài đè hoặc cài song song với Albion chính thức. Nếu hiện yêu cầu tải APK Albion mới, hãy đóng game và không cập nhật theo thông báo.
 
 [Báo lỗi](https://github.com/IplayIshare/Avalon-Survival/issues)
 
