@@ -51,18 +51,51 @@ try {
         [IO.Directory]::CreateDirectory($downloadDir) | Out-Null
         $ArchivePath = Join-Path $downloadDir ('albion-client-' + $manifest.version + '.zip')
         if (-not (Test-Path -LiteralPath $ArchivePath -PathType Leaf)) {
-            $downloadUri = [Uri]$manifest.url
-            if ($downloadUri.Scheme -cne 'https' -or $downloadUri.Host -cne 'live.albiononline.com') {
-                throw 'Only the official HTTPS client source is allowed.'
-            }
-            $partialPath = Assert-ProjectPath ($ArchivePath + '.partial')
-            $head = Invoke-WebRequest -UseBasicParsing -Uri $downloadUri -Method Head -TimeoutSec 15 -MaximumRedirection 0
-            if ([long]$head.Headers['Content-Length'] -ne [long]$manifest.archiveBytes) {
-                throw 'Official CDN now serves another version. Put the verified 1.32.030.345319 ZIP beside this installer as albion-client-official.zip, or use -ArchivePath. Nothing was downloaded.'
-            }
-            Write-Host 'Downloading the official Windows client (about 3.14 GB). Please wait...'
+            if (@($manifest.parts).Count -eq 0) { throw 'No download parts in release manifest.' }
+            $partPaths = @()
+            $totalBytes = 0L
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-            Invoke-WebRequest -UseBasicParsing -Uri $downloadUri -OutFile $partialPath -TimeoutSec 3600 -MaximumRedirection 0
+            foreach ($part in $manifest.parts) {
+                if ($part.name -notmatch '^Albion-Client-[0-9]+\.zip\.part[0-9]+$') { throw 'Invalid download filename.' }
+                $downloadUri = [Uri]$part.url
+                if ($downloadUri.Scheme -cne 'https' -or $downloadUri.Host -cne 'github.com' -or
+                    -not $downloadUri.AbsolutePath.StartsWith('/IplayIshare/albion-players/releases/download/', [StringComparison]::Ordinal)) {
+                    throw 'Invalid release download source.'
+                }
+                $partPath = Assert-ProjectPath (Join-Path $downloadDir $part.name)
+                if ($partPaths -contains $partPath) { throw 'Duplicate download part.' }
+                if (Test-Path -LiteralPath $partPath -PathType Leaf) {
+                    if ((Get-Item -LiteralPath $partPath).Length -ne [long]$part.bytes -or
+                        (Get-FileHash -LiteralPath $partPath -Algorithm SHA256).Hash -ine $part.sha256) {
+                        Remove-Item -LiteralPath $partPath -Force
+                    }
+                }
+                if (-not (Test-Path -LiteralPath $partPath -PathType Leaf)) {
+                    Write-Host ('Downloading ' + $part.name + '. Please wait...')
+                    $partPartial = Assert-ProjectPath ($partPath + '.partial')
+                    $webClient = New-Object Net.WebClient
+                    try { $webClient.DownloadFile($downloadUri, $partPartial) } finally { $webClient.Dispose() }
+                    if ((Get-Item -LiteralPath $partPartial).Length -ne [long]$part.bytes -or
+                        (Get-FileHash -LiteralPath $partPartial -Algorithm SHA256).Hash -ine $part.sha256) {
+                        Remove-Item -LiteralPath $partPartial -Force
+                        throw 'Downloaded part failed verification. Run 1-Tai-client.cmd again.'
+                    }
+                    Move-Item -LiteralPath $partPartial -Destination $partPath
+                }
+                Write-Host ('Verified ' + $part.name)
+                $partPaths += $partPath
+                $totalBytes += [long]$part.bytes
+            }
+            if ($totalBytes -ne [long]$manifest.archiveBytes) { throw 'Incomplete release manifest.' }
+            $partialPath = Assert-ProjectPath ($ArchivePath + '.partial')
+            Write-Host 'Joining verified download parts...'
+            $output = [IO.File]::Create($partialPath)
+            try {
+                foreach ($partPath in $partPaths) {
+                    $inputStream = [IO.File]::OpenRead($partPath)
+                    try { $inputStream.CopyTo($output, 1048576) } finally { $inputStream.Dispose() }
+                }
+            } finally { $output.Dispose() }
             if ((Get-Item -LiteralPath $partialPath).Length -ne [long]$manifest.archiveBytes) {
                 throw 'Downloaded size changed. Installation stopped; ask for a compatible client release.'
             }
@@ -71,6 +104,10 @@ try {
             }
             $null = Assert-ProjectPath $ArchivePath
             Move-Item -LiteralPath $partialPath -Destination $ArchivePath
+            foreach ($partPath in $partPaths) {
+                $null = Assert-ProjectPath $partPath
+                Remove-Item -LiteralPath $partPath -Force
+            }
         }
     }
     $ArchivePath = (Resolve-Path -LiteralPath $ArchivePath).ProviderPath
@@ -105,7 +142,7 @@ try {
     if (Test-Path -LiteralPath $clientPath) { throw 'Client directory appeared during installation; refusing to overwrite it.' }
     Move-Item -LiteralPath $stagingPath -Destination $clientPath
     $stagingPath = $null
-    Write-Host 'Client ready. Run 2-Mo-game.cmd, then choose Create account inside the game.'
+    Write-Host 'Client ready. Run 2-Mo-game.cmd and enter your username and password.'
 } catch {
     Write-Host ('ERROR: ' + $_.Exception.Message) -ForegroundColor Red
     if ($null -ne $stagingPath -and (Test-Path -LiteralPath $stagingPath)) {

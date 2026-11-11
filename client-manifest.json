@@ -1,9 +1,28 @@
 {
   "version": "1.32.030.345319",
   "versionFile": "albiononline-win32-full-1.32.030.345319",
-  "url": "https://live.albiononline.com/clients/albion-online-fullgame-win32.zip",
   "archiveBytes": 3143941770,
   "archiveSha256": "f646ee4ead147b40a1e86cf6ef92e20e9e95044af7860d6a67a86fff366bec27",
   "verifiedDate": "2026-11-02",
-  "server": "157.10.201.13:5055"
+  "server": "157.10.201.13:5055",
+  "parts": [
+    {
+      "name": "Albion-Client-345319.zip.part1",
+      "bytes": 1100000000,
+      "sha256": "2e39e81235b6c9c7e6a8c9c9abc7336147c4e8b3eac0a67fab1315a77e0836b3",
+      "url": "https://github.com/IplayIshare/albion-players/releases/download/v2.0.1-survival-pc/Albion-Client-345319.zip.part1"
+    },
+    {
+      "name": "Albion-Client-345319.zip.part2",
+      "bytes": 1100000000,
+      "sha256": "6854a247c47977e9467355d910cd4e6501b0e9cb10a325e5dbeb512b6334152c",
+      "url": "https://github.com/IplayIshare/albion-players/releases/download/v2.0.1-survival-pc/Albion-Client-345319.zip.part2"
+    },
+    {
+      "name": "Albion-Client-345319.zip.part3",
+      "bytes": 943941770,
+      "sha256": "fdc4e413eb251080023fa0f1ee3ab6e57bf1b1666567021746aec1a2d964e96d",
+      "url": "https://github.com/IplayIshare/albion-players/releases/download/v2.0.1-survival-pc/Albion-Client-345319.zip.part3"
+    }
+  ]
 }
